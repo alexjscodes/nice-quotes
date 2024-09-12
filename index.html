@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h1 id="quote"></h1>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
 var category = 'happiness'
@@ -16,6 +17,7 @@ $.ajax({
     contentType: 'application/json',
     success: function(result) {
         console.log(result);
+        document.getElementById("quote").innerHTML = result[0].quote;
     },
     error: function ajaxError(jqXHR) {
         console.error('Error: ', jqXHR.responseText);
