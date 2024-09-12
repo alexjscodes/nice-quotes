@@ -3,13 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Nice Quotes</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+#quote {
+    background: lightgray;
+    border: 1px solid gray;
+    box-shadow: 2px 2px 4px black;
+    padding: 5px;
+    border-radius: 20px;
+    font-family: "Montserrat", sans-serif;
+    width: 60%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.author {
+    font-size: 12px;
+    font-weight: 600;
+    font-style: italic;
+}
+    </style>
 </head>
 <body>
     <h1 id="quote"></h1>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-var category = 'happiness'
+var list = ['happiness', 'love', 'inspirational'];
+var category = list[Math.round(Math.random() * 2)];
 $.ajax({
     method: 'GET',
     url: 'https://api.api-ninjas.com/v1/quotes?category=' + category,
@@ -17,7 +40,7 @@ $.ajax({
     contentType: 'application/json',
     success: function(result) {
         console.log(result);
-        document.getElementById("quote").innerHTML = result[0].quote;
+        document.getElementById("quote").innerHTML = result[0].quote + '<span class="author"> - ' + result[0].author + '</span>';
     },
     error: function ajaxError(jqXHR) {
         console.error('Error: ', jqXHR.responseText);
